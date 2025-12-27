@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/schemas/extension.json",
+  "name": "audio-device-switcher",
+  "title": "Audio Device Switcher",
+  "description": "Switch default PipeWire audio input and output devices",
+  "icon": "extension_icon.png",
+  "author": "MartinLoeper",
+  "license": "MIT",
+  "categories": ["System"],
+  "commands": [
+    {
+      "name": "switch-output",
+      "title": "Switch Audio Output",
+      "description": "Select default audio output device",
+      "mode": "view"
+    },
+    {
+      "name": "switch-input",
+      "title": "Switch Audio Input",
+      "description": "Select default audio input device",
+      "mode": "view"
+    }
+  ],
+  "scripts": {
+    "build": "vici build",
+    "dev": "vici develop",
+    "format": "biome format --write src",
+    "lint": "vici lint"
+  },
+  "dependencies": {
+    "@vicinae/api": "^0.16.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.7",
+    "typescript": "^5.9.2"
+  }
+}

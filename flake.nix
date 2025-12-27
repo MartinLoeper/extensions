@@ -55,6 +55,7 @@
             vicinae.packages.${system}.default
             self.formatter.${system}
             nodejs
+            pnpm
             typescript-language-server
           ];
         };

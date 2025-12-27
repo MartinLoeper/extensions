@@ -11,6 +11,20 @@ Use this skill when creating new native Vicinae extensions using `@vicinae/api`.
 - **File Structure**: https://docs.vicinae.com/extensions/file-structure
 - **Manifest**: https://docs.vicinae.com/extensions/manifest
 
+## Environment Requirements
+
+**Important**: Before running any script commands (`pnpm install`, `pnpm run dev`, `pnpm run build`, etc.), ensure direnv is active to have all required build tools available.
+
+```bash
+# Allow direnv in the project root (run once)
+direnv allow
+
+# Verify the environment is loaded (should show nix-shell prompt or direnv output)
+echo $IN_NIX_SHELL
+```
+
+If direnv is not active, commands like `vici`, `pnpm`, and `node` may not be available or may use incorrect versions.
+
 ## Creating a New Extension
 
 ### 1. Create Feature Branch
