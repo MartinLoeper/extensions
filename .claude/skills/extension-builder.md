@@ -432,7 +432,13 @@ pnpm run dev
 2. Verify author/contributors are valid GitHub usernames
 3. Include 512x512 icon in assets
 4. Generate package-lock.json (`npm install --package-lock-only`)
-5. Create PR to upstream: https://github.com/vicinaehq/extensions
+5. **Clean up branch before PR**: Remove Claude-specific commits (CLAUDE.md, .claude/) via interactive rebase:
+   ```bash
+   git rebase -i origin/main
+   # In the editor, delete (or mark with 'd') any lines containing Claude config commits
+   # Save and close to apply
+   ```
+6. Create PR to upstream: https://github.com/vicinaehq/extensions
 
 ## Available Icons
 
