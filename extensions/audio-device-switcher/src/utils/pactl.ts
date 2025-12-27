@@ -114,3 +114,11 @@ export async function setDefaultSink(name: string): Promise<void> {
 export async function setDefaultSource(name: string): Promise<void> {
 	await execPromise(`pactl set-default-source "${name}"`);
 }
+
+export async function toggleSinkMute(name: string): Promise<void> {
+	await execPromise(`pactl set-sink-mute "${name}" toggle`);
+}
+
+export async function toggleSourceMute(name: string): Promise<void> {
+	await execPromise(`pactl set-source-mute "${name}" toggle`);
+}

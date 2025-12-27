@@ -9,7 +9,7 @@ import {
 	Color,
 } from "@vicinae/api";
 import { CliCheck, PactlNotFoundView } from "./components/cli-check";
-import { type AudioDevice, listSinks, setDefaultSink } from "./utils/pactl";
+import { type AudioDevice, listSinks, setDefaultSink, toggleSinkMute } from "./utils/pactl";
 
 function OutputDeviceList() {
 	const [devices, setDevices] = useState<AudioDevice[]>([]);
@@ -56,6 +56,27 @@ function OutputDeviceList() {
 		[loadDevices],
 	);
 
+	const handleToggleMute = useCallback(
+		async (device: AudioDevice) => {
+			try {
+				await toggleSinkMute(device.name);
+				await showToast({
+					style: Toast.Style.Success,
+					title: device.mute ? "Unmuted" : "Muted",
+					message: device.description,
+				});
+				await loadDevices();
+			} catch (error) {
+				await showToast({
+					style: Toast.Style.Failure,
+					title: "Failed to toggle mute",
+					message: error instanceof Error ? error.message : String(error),
+				});
+			}
+		},
+		[loadDevices],
+	);
+
 	return (
 		<List
 			isLoading={isLoading}
@@ -91,6 +112,12 @@ function OutputDeviceList() {
 									title="Set as Default"
 									icon={Icon.CheckCircle}
 									onAction={() => handleSetDefault(device)}
+								/>
+								<Action
+									title={device.mute ? "Unmute" : "Mute"}
+									icon={device.mute ? Icon.SpeakerHigh : Icon.SpeakerOff}
+									shortcut={{ modifiers: ["shift"], key: "m" }}
+									onAction={() => handleToggleMute(device)}
 								/>
 								<Action
 									title="Refresh"
