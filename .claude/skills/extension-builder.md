@@ -1,3 +1,9 @@
+---
+name: extension-builder
+description: Creating new native Vicinae extensions using @vicinae/api.
+allowed-tools: Bash(git:*), Bash(mkdir:*), Bash(pnpm:*), Bash(npm:*)
+---
+
 # Extension Builder Skill
 
 Use this skill when creating new native Vicinae extensions using `@vicinae/api`.
